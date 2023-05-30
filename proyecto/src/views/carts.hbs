@@ -4,20 +4,21 @@
 
 <div>
   <h2>Productos en el carrito:</h2>
-  <ul>
-    {{#each cart}}
-        <ul>
-          <li>Id Carrito: {{_id}}</li>
-          {{#each products}}
-          <li>Producto: {{this.products.Object._id}}</li>
-          <li>Cantidad: {{this.Object.quantity}}</li>
-          {{/each}}
-        </ul>
   
-    {{/each}}
-  </ul>
-</div>
+    {{#each data}}
+      <ul>
+        <li>Carrito N°: {{_id}}</li>
+        <li>Total Productos: {{__v}}</li>
+         <!-- {{#each products}}
+            <ul>
+              <li>Producto: {{this.products._id}}</li>
+              <li>Cantidad: {{this.products.quantity}}</li>
+           </ul>
+         {{/each}}-->
 
+      </ul>
+    {{/each}}
+</div>
 
    
     

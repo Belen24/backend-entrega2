@@ -17,7 +17,7 @@ router.get("/:cid",async(req,res)=>{
         const cartId = req.params.cid;
         const cart = await cartsService.getCartById(cartId);
        //res.json({status:"success",data:cart});
-       res.render("carts", {cart: cart})
+       res.render("carts", {data:cart})
     } catch (error) {
         console.log(error.message);
         res.status(400).json({status:"error", message:"Hubo un error al obtener el carrito"});
@@ -30,7 +30,7 @@ router.get("/population/:cid",async(req,res)=>{
         const {cid} = req.params;
         const cart =(await cartsService.getPopulate(cid));
         res.json(cart);
-       //res.render("carts", {cart})
+        //res.render("carts", {cart})
     } catch (error) {
         console.log(error.message);
         res.status(400).json({status:"error", message:"Hubo un error al obtener la información"});
