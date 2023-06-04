@@ -11,11 +11,10 @@ const cartsService = new CartsMongo();
 const router = Router();
 
 //cart routes
-//ruta para visualizar un carrito por su ID
-router.get("/:cid",async(req,res)=>{
+//Ruta para visualizar los carritos
+router.get("/",async(req,res)=>{
     try {
-        const cartId = req.params.cid;
-        const cart = await cartsService.getCartById(cartId);
+        const cart = await cartsService.getCarts();
        //res.json({status:"success",data:cart});
        res.render("carts", {data:cart})
     } catch (error) {
@@ -23,6 +22,22 @@ router.get("/:cid",async(req,res)=>{
         res.status(400).json({status:"error", message:"Hubo un error al obtener el carrito"});
     }
 });
+
+
+//ruta para visualizar un carrito por su ID
+router.get("/:cid",async(req,res)=>{
+    try {
+        const cartId = req.params.cid;
+        const cart = await cartsService.getCartById(cartId);
+        console.log(cart); // por consola me trae los productos_Id y la propiedad quantity, pero no logro visualizarlos en la vista "carts.hbs"
+       //res.json({status:"success",data:cart});
+       res.render("carts", {data:cart})
+    } catch (error) {
+        console.log(error.message);
+        res.status(400).json({status:"error", message:"Hubo un error al obtener el carrito"});
+    }
+});
+
 
 //Populate
 router.get("/population/:cid",async(req,res)=>{

@@ -5,6 +5,15 @@ export class CartsMongo{
         this.model = cartsModel;
     };
 
+    async getCarts(){
+        try {
+            const data = await this.model.find().lean();
+            return data;
+        } catch (error) {
+            throw new Error(`Error al obtener los carritos ${error.message}`);
+        }
+    };
+
     async getCartById(id){
         try {
             const data = await this.model.findById(id);
