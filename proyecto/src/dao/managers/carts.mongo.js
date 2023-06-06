@@ -61,9 +61,16 @@ export class CartsMongo{
                 throw new Error("El carrito no existe")
             }
 
-            cart.products.push (productId);
-            await cart.save();
-            return "Producto agregado al carrito";
+            let searchProductIndex = cart.products.findIndex((product) => product._id.toString() === productId);
+            if (searchProductIndex !== -1) {
+            cart.products[searchProductIndex].quantity++;
+            } else {
+            const newProduct = { _id: productId, quantity: 1 };
+            cart.products.push(newProduct);
+        }
+
+    await cart.save();
+    return "Producto agregado al carrito";
         } catch (error) {
             throw new Error(`Error al agregar el producto ${error.message}`);
         }

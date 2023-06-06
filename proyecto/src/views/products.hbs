@@ -1,13 +1,27 @@
 <h1>PRODUCTOS</h1>
 <br/>
+
+<hr />
+<div>
+    <button onclick="newCart()" id="newCart">Crear tu carrito de compras</button>
+</div>
+<div>
+    Id del carrito:
+    <span id="cartDiv"></span>
+    Cantidad total de productos:
+    <span id="productsDiv"></span>
+</div>
+<br />
+
+
 {{#if totalDocs}}
 
     <div>
         Listado de Productos
         <ul>
             {{#each payload}}
-                <li>{{this.title}} - description: {{this.description}} - Price: {{this.price}} </li>
-                <button onclick="addToCart(`{{this._id}}`)">Agregar al carrito</button>
+                <li>{{this.title}} - description: {{this.description}} - Price:$ {{this.price}} </li>
+                <button onclick="addToCart('{{this._id}}')">Agregar al carrito</button>
                 <hr>
             {{/each}}
         </ul>
@@ -27,4 +41,4 @@
     <p>No hay productos</p>
     {{/if}}
 
-    <script src="js/products.js"></script>
+   <script src="js/products.js" ></script>
