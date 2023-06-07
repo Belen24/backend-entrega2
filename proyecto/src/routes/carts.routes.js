@@ -68,8 +68,12 @@ router.post("/",async(req,res)=>{
 router.post("/:cid/product/:pid",async(req,res)=>{
     try {
         //const {price}= req.body;
-        const modProduct = await cartsService.addProduct(req.params.cid , req.params.pid);
-        res.json({status:"success",data:modProduct});
+        //const modProduct = 
+        await cartsService.addProduct(req.params.cid , req.params.pid);
+        const updatedCart = await cartsService.getCartById(req.params.cid);
+
+    res.json({ status: "success", data: updatedCart });
+        //res.json({status:"success",data:modProduct});
     } catch (error) {
         console.log(error.message);
         res.status(400).json({status:"error", message:error.message});

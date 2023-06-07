@@ -1,29 +1,3 @@
-/*console.log("javascript products")
-
-const addToCart = async(productId)=>{
-    console.log("Este sera el producto a agregar", productId);
-    fetch("http://localhost:8080/",{
-
-    })
-};
-
-const addToCart = async (productId) => {
-    try {
-        const response = await fetch(`http://localhost:8080/cart/${cartId}/product/${productId}`, {
-            method: 'POST',
-        });
-        
-        if (response.ok) {
-            // El producto se agregó correctamente al carrito
-            console.log('Producto agregado al carrito');
-        } else {
-            // Ocurrió un error al agregar el producto al carrito
-            console.log('Error al agregar el producto al carrito');
-        }
-    } catch (error) {
-        console.log('Error de red:', error);
-    }
-};*/
 
 let cartDiv = document.getElementById("cartDiv");
 let productsDiv = document.getElementById("productsDiv");
@@ -42,6 +16,9 @@ const newCart = async () => {
            
 
             cartDiv.innerHTML = cartId;
+
+            const cartLink =document.getElementById ("cartLink");
+            cartLink.href = `http://localhost:8080/api/carts/${cartId}`;
         } else {
             console.log("Se esta usando un carrito");
         }
@@ -60,6 +37,7 @@ const addToCart = async (productId) => {
                 }
             );
             const result = await resp.json();
+            console.log("resultado", result);
 
             if (result.status == "success") {
                 const payload = await fetch(
@@ -68,13 +46,15 @@ const addToCart = async (productId) => {
                         method: "GET",
                     }
                 );
-                const cart = await payload.json();
+                /*const cart = await payload.json();
                 console.log("carro", cart);
-                productsDiv.innerHTML = cart.carts.__v;
+                productsDiv.innerHTML = cart.data.products.__v;
+                console.log("carro", cart.data);*/
+                console.log(payload);
             }
         }
     } catch (error) {
-        console.log("Error: ", error.message);
+        console.log("Error: Al contabilizar el carrito", error.message);
     }
 };
 

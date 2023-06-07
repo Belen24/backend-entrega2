@@ -70,7 +70,8 @@ export class CartsMongo{
         }
 
     await cart.save();
-    return "Producto agregado al carrito";
+    //return "Producto agregado al carrito";
+    return this.getPopulate (cartId)
         } catch (error) {
             throw new Error(`Error al agregar el producto ${error.message}`);
         }
